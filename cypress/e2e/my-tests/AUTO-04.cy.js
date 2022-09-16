@@ -3,15 +3,19 @@ describe ('Set Creating', ()=> {
 })
 
     it(`Create set`, function  ()  {
-        let mySet = new Set()
-        mySet.add('USD')
-        mySet.add('EU')
-        mySet.add('BYN')
-        console.log(mySet)
-        mySet.forEach(mySet => {
-            cy.log(mySet)
+
+        const currencySet= new Set()
+        currencySet.add('USD')
+        currencySet.add('EU')
+        currencySet.add('BYN').add('RUB').add('USD')
+        //console.log(mySet)
+
+        currencySet.forEach(currencySet => {
+           cy.log(currencySet)
+
         })
 
-    })
+})
+
 
 
