@@ -38,21 +38,17 @@ describe ('Set Creating', ()=> {
 
    import{isSuperset,union,intersection,difference} from "D:/projects/cypress-workshop/cypress/Utils/helper";
    it(`Create new sets, task 6`, function  () {
-       let setA = new Set([1,2,3,4]),
+
+       const setA = new Set([1,2,3,4]),
         setB = new Set([2,3]),
         setC = new Set([3,4,5,6])
        console.log(setA,setB,setC)
 
-       isSuperset (setA,setB)
-       union (setA,setC)
-       intersection(setA,setC)
-       difference(setA,setC)
 
-
-       cy.log(isSuperset(setA,setB)),
-       cy.log(union(setA,setC)),
-       cy.log(intersection(setA,setC)),
-       cy.log(difference(setA,setC))
+       console.log(isSuperset(setA,setB)),
+       console.log(union(setA,setC)),
+       console.log(intersection(setA,setC)),
+       console.log(difference(setA,setC))
 
 
    })

@@ -1,5 +1,5 @@
 export const isSuperset =(set, subset) =>{
-    for (let elem of subset) {
+    for (const elem of subset) {
         if (!set.has(elem)) {
             return false;
         }
@@ -8,8 +8,8 @@ export const isSuperset =(set, subset) =>{
 }
 
 export const union=(setA, setB) => {
-    let _union = new Set(setA);
-    for (let elem of setB) {
+    const _union = new Set(setA);
+    for (const elem of setB) {
         _union.add(elem);
     }
     return _union;
@@ -17,7 +17,7 @@ export const union=(setA, setB) => {
 
 export const intersection=(setA, setB) => {
     let _intersection = new Set();
-    for (let elem of setB) {
+    for (const elem of setB) {
         if (setA.has(elem)) {
             _intersection.add(elem);
         }
@@ -26,8 +26,8 @@ export const intersection=(setA, setB) => {
 }
 
 export const difference=(setA, setB) => {
-    let _difference = new Set(setA);
-    for (let elem of setB) {
+    const _difference = new Set(setA);
+    for (const elem of setB) {
         _difference.delete(elem);
     }
     return _difference;
