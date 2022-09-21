@@ -12,18 +12,16 @@ it(`Create Array`, function  ()  {
             {planet: "Saturn", radius: 60268, density: 0.69, distance: 9.551},
             {planet: "Uranus", radius: 25559, density: 1.27, distance: 19.213},
             {planet: "Neptune", radius: 24764, density: 1.64, distance: 30.07}
-        ]
-    )
+        ])
+
 
 
    //add solarSystem
+    planets.forEach(planet => {
+        cy.log(Object.keys(planet).map(key => key + ':' + planet[key]).join(', solarSystem:true '));
+    })
 
 
-   const solarSystem=planets.map(function(currentvalue){
-       return currentvalue +"solarSystem:true"
-   })
-      console.log(solarSystem)
-     console.log(planets)
 
         //output planets Array to the console
     planets.forEach(planet => {
@@ -43,12 +41,41 @@ it(`Create Array`, function  ()  {
     cy.log('Total radius is  ' + totalRadius)
 
 //planet with Distance>5
-    const PlanetsWithBigDistance = planets.filter((planets, index, arr) => {
 
-        return planets.distance > 5;
+    const getPlanetsWithDistance=planets.filter(planet=> {
+        return planet.distance > 5
+    })
+   cy.log("====Planets with distance > 5 ===="+getPlanetsWithDistance)
+
+
+//  delete "SomeNewPlanet"
+
+    planets.splice(8)
+    cy.log(planets)
+
+//sort plants by radius
+
+    planets.sort(function(a, b) {
+        return a.radius - b.radius;
+    });
+   // output array
+    planets.forEach((planet) => {
+        console.log(planet);
     });
 
-    cy.log(' Planets with distance > 5 ' + PlanetsWithBigDistance)
+//sort planets by name
+    planets.sort(function(a, b) {
+        return a.planet.localeCompare(b.planet);
+    });
+   // output array
+    planets.forEach((planet) => {
+        console.log(planet);
+    });
+//array length
+    console.log(planets.length)
+
+
+
 
 
 })
