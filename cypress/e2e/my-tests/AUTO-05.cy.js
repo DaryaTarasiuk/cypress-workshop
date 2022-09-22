@@ -34,6 +34,7 @@ it(`Create Array`, function  ()  {
     planets.forEach(planet => {
         cy.log(JSON.stringify(planet));
     })
+
 //sum the radiuse
     const totalRadius=planets.reduce((acc,cur)=>{
        return acc+cur.radius;
@@ -42,10 +43,9 @@ it(`Create Array`, function  ()  {
 
 //planet with Distance>5
 
-    const getPlanetsWithDistance=planets.filter(planet=> {
-        return planet.distance > 5
-    })
-   cy.log("====Planets with distance > 5 ===="+getPlanetsWithDistance)
+    const getPlanetsWithDistance=planets.filter((planet)=> planet.distance>5);
+
+   console.log(getPlanetsWithDistance)
 
 
 //  delete "SomeNewPlanet"
@@ -74,8 +74,5 @@ it(`Create Array`, function  ()  {
 //array length
     console.log(planets.length)
 
-
-
-
-
 })
+
