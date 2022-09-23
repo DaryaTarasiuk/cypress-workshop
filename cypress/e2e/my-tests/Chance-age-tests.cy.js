@@ -3,41 +3,56 @@ describe ('Creating tests by different ways', ()=> {
 })
 import Chance from 'chance'
 
-it(`Test random age, first way`, function  ()  {
-chance.age()
-console.log(chance.age())
+it(`Test random age, first way(if/else)`, function  ()  {
+ let age= chance.age()
+console.log(age)
 
-   if (chance.age < 13) {
-        console.log ("Child");
-    } else if (chance.age() <18) {
-        console.log ("Teen");
-    } else if (chance.age() <60){
-        console.log ("Adult");
-    }else if(chance.age>60){
-       console.log ("Senior");
+
+   if (age>=0 && age<= 12){
+        console.log ("Child")
+    } else if (age> 12 && age<= 19) {
+        console.log ("Teen")
+    } else if (age>19 && age<= 65){
+        console.log ("Adult")
+    }else if(age>65 && age<= 120){
+       console.log ("Senior")
     }
-
 })
 
-it(`Test random age, second way`, function  () {
-    chance.age()
-    console.log(chance.age())
 
-    switch (chance.age()) {
+it(`Test random age, second way(switch)`, function  () {
+    let age = chance.age()
+    console.log(age)
 
-        case (chance.age()>=0,chance.age()<=13):
-          console.log("Child");
-           break;
-        case (chance.age()>=13,chance.age()<=18):
+    switch (age) {
+
+        case (age >= 0):
+        case(age <= 12):
+            console.log("Child");
+            break;
+
+        case (age > 12):
+        case(age <= 19):
             console.log("Teen");
             break;
-        case (chance.age()>=18,chance.age()<=60):
+
+        case (age > 19):
+        case(age <= 65):
             console.log("Adult");
             break;
-        case (chance.age()>=60,chance.age()<=100):
-            console.log("Senior");
+
+        default:
+            console.log("Senior")
             break;
 
     }
+})
+    it(`Test random age, third way (?)`, function  () {
+        let age =chance.age()
+        console.log(age)
+        let title=((age>=0 && age<= 12)? 'child' :(age> 12 && age<= 19)
+            ?'Teen' :(age>19 && age<= 65)?'adult'
+                :'Senior');
+        console.log(title)
 
 })
