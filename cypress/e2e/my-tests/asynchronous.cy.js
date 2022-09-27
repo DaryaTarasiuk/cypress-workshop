@@ -9,6 +9,8 @@ it('Get list of products ', function () {
         cy.wrap(response.body.products)
         //output products
         cy.log(response.body.products)
+        //output length of array
+        cy.log(response.body.products.length)
         //output the first element from products array
         cy.log(response.body.products[0])
     })
