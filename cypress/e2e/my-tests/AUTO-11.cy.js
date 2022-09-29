@@ -26,10 +26,10 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
     it('Change the quantity of products in the card', () => {
         cy.visit('https://store.google.com/us/cart?hl=en-US')
-        //check existing products
-        //cy.contains('Case-Mate Tough Clear Case for Pixel 6a*', 'OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*').should("exist")
-        //delete one product from the card
-        cy.get('[aria-label="Remove CaseMate Tough Clear Case for Pixel 6a from cart"]').eq(0).click()
+        //then user change the quantity of some product
+        cy.get('[aria-label="Product Quantity"]').eq(0).select(2)
+        //and finally delete one product
+        cy.get('[aria-label="Remove OtterBox Alpha Flex Screen Protector for Pixel 6a from cart"]').eq(1).click()
 
     })
 })
