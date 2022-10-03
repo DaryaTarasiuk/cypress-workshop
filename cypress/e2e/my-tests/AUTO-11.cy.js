@@ -29,7 +29,7 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         //then user change the quantity of some product
         cy.get('[aria-label="Product Quantity"]').eq(0).select(2)
         //and finally delete one product
-        cy.get('[aria-label="Remove OtterBox Alpha Flex Screen Protector for Pixel 6a from cart"]').eq(1).click()
+        cy.get('[aria-label="Remove OtterBox Alpha Flex Screen Protector for Pixel 6a from cart"]').click()
 
     })
 })
