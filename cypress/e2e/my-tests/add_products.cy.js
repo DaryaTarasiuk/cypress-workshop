@@ -17,23 +17,22 @@ describe ('Test adding products to the user card', () => {
 
         cy.visit ('https://store.google.com/us/?hl=en-US&regionRedirect=true')
 
-        searchObject.SearchButton()
-        .click()
+        cy.log('GIVEN User is at Accessories page')
+        searchObject.SearchButton().click()
 
-        //find product
+        cy.log('AND User can find the element he want')
         searchObject.SearchElement()
 
-        //go to product page
-        searchObject.getElement()
-        .click()
+        cy.log('WHEN User selects the product ')
+        searchObject.getElement().click()
 
-        //click on Buy button
+        cy.log('THEN User can buy this element')
         buyElement.BuyButton.click()
 
         // user select a carrier
        buyElement.carrierChoose.click()
 
-        //Then user have an opportunity to choose a colour
+        cy.log('AND User can choose the colour')
         buyElement.colourChoose.click()
 
         //then the user skips the final question before adding the product to the cart
@@ -42,11 +41,11 @@ describe ('Test adding products to the user card', () => {
        //then the user skips the final question before adding the product to the cart
         buyElement.ProtectChoose.click()
 
-        //now user can add this product to the card
+        cy.log('THEN Data product is presented in the card ')
         buyElement.AddToCardButton.click()
 
 
-      //user wants to add one more product to the cart
+      cy.log('AND User can add new products to the card ')
         searchObject.SearchButton().click()
 
         //find product
@@ -57,7 +56,7 @@ describe ('Test adding products to the user card', () => {
         //click on Buy button
         addNewElement.BuyButton.click()
 
-        //now user can delete these products from cart. As a result - the cart is empty
+        cy.log('THEN User can delete all products from the card')
         deleteElements.deleteFirstElement.click()
         deleteElements.deleteSecondElement.click()
         //everybody is happy there is no reason to spend money))
