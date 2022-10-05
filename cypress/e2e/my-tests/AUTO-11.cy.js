@@ -26,7 +26,7 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         addNewElement.BuyCaseButton.click()
 
         cy.log('THEN User can add new element to the card')
-        searchObject.SearchGoogleStoreLogoButton().click()
+        SearchObject.SearchGoogleStoreLogoButton().click()
         SearchObject.SearchButton().click()
         //find product
         SearchObject.SearchElement()
