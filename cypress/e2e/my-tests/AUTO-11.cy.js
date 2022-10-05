@@ -1,7 +1,7 @@
 import SearchObject from "../../PageObjects/searchObject";
 import addNewElement from "../../PageObjects/addNewElement";
 import deleteElements from "../../PageObjects/deleteElements";
-import searchObject from "../../PageObjects/searchObject";
+
 
 describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
