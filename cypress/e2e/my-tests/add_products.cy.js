@@ -24,7 +24,7 @@ describe ('Test adding products to the user card', () => {
         searchObject.SearchElement()
 
         cy.log('WHEN User selects the product ')
-        searchObject.getElement().click()
+        searchObject.GoToElementPage().click()
 
         cy.log('THEN User can buy this element')
         buyElement.BuyButton.click()
@@ -52,9 +52,9 @@ describe ('Test adding products to the user card', () => {
         searchObject.SearchElement()
 
         //go to product page
-        addNewElement.GoToProductPage().click()
+        addNewElement.GoToCasePage().click()
         //click on Buy button
-        addNewElement.BuyButton.click()
+        addNewElement.BuyCaseButton.click()
 
         cy.log('THEN User can delete all products from the card')
         deleteElements.deleteFirstElement.click()

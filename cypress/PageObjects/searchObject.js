@@ -14,7 +14,7 @@ class SearchObject {
     }
 
 
-    getElement(){
+    GoToElementPage(){
         return cy.contains ('Pixel 6a').should('exist')
     }
 

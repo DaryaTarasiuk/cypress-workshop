@@ -10,6 +10,10 @@ class deleteElements {
         return cy.get('[aria-label="Remove CaseMate Tough Clear Case for Pixel 6a from cart"]')
     }
 
+    get deleteThirdElement(){
+        return cy.get('[aria-label="Remove OtterBox Alpha Flex Screen Protector for Pixel 6a from cart"]')
+    }
+
 }
 
 export default new deleteElements();
