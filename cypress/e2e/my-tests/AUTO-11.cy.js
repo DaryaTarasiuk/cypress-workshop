@@ -1,6 +1,7 @@
 import SearchObject from "../../PageObjects/searchObject";
 import addNewElement from "../../PageObjects/addNewElement";
 import deleteElements from "../../PageObjects/deleteElements";
+import searchObject from "../../PageObjects/searchObject";
 
 describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
@@ -25,7 +26,7 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         addNewElement.BuyCaseButton.click()
 
         cy.log('THEN User can add new element to the card')
-        cy.get('[aria-label="Google Store home. Google Store logo."]').click()
+        searchObject.SearchGoogleStoreLogoButton().click()
         SearchObject.SearchButton().click()
         //find product
         SearchObject.SearchElement()

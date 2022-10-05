@@ -18,6 +18,9 @@ class SearchObject {
         return cy.contains ('Pixel 6a').should('exist')
     }
 
+    SearchGoogleStoreLogoButton(){
+        return cy.get('[aria-label="Google Store home. Google Store logo."]')
+    }
 
   }
 
