@@ -46,11 +46,14 @@ it(`Create Array`, function  ()  {
     const getPlanetsWithDistance=planets.filter((planet)=> planet.distance>5);
 
    console.log(getPlanetsWithDistance)
+//
 
+    let x = planets.map(object => object.planet).indexOf("SomeNewPlanet");
+   cy.log(x)
 
 //  delete "SomeNewPlanet"
 
-    planets.splice(8)
+    planets.splice(x)
     cy.log(planets)
 
 //sort plants by radius
