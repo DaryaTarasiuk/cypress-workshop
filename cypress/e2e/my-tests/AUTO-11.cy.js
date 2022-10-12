@@ -1,4 +1,4 @@
-import SearchObject from "../../PageObjects/searchObject";
+import SearchPage from "../../PageObjects/searchPage";
 import addNewElement from "../../PageObjects/addNewElement";
 import deleteElements from "../../PageObjects/deleteElements";
 
@@ -14,22 +14,22 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
     before(() => {
         cy.visit('https://store.google.com/us/?hl=en-US&regionRedirect=true')
         cy.log('GIVEN User is at Accessories page')
-        SearchObject.SearchButton().click()
+        SearchPage.SearchButton().click()
 
         cy.log('AND User can find the element he want')
-        SearchObject.SearchElement()
+        SearchPage.SearchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
 
-        cy.log('WHEN User selects the product ')
-        addNewElement.GoToCasePage().click()
+        cy.log('THEN User selects the product ')
+        addNewElement.CasePage
 
-        cy.log('THEN User can add this element to the card')
+        cy.log('AND User can add this element to the card')
         addNewElement.BuyCaseButton.click()
 
         cy.log('THEN User can add new element to the card')
-        SearchObject.SearchGoogleStoreLogoButton().click()
-        SearchObject.SearchButton().click()
+        SearchPage.SearchGoogleStoreLogoButton().click()
+        SearchPage.SearchButton().click()
         //find product
-        SearchObject.SearchElement()
+        SearchPage.SearchByProductName('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
         addNewElement.GoToOtterBoxPage().click()
         addNewElement.BuyOtterBoxButton.click()
     })

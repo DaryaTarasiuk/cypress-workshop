@@ -1,0 +1,28 @@
+///reference types="Cypress"
+
+class SearchPage {
+    open() {
+        cy.visit ('/us/?hl=en-US&regionRedirect=true')
+    }
+
+   SearchButton(){
+        return cy.get ('div[aria-label="Search the Google store"]')
+   }
+
+   SearchByProductName(productName){
+        return cy.get ('input[placeholder="Search Google Store"]').type(`${productName}{enter}`)
+    }
+
+
+    selectProduct(productName){
+        return cy.contains ('Pixel 6a').should('exist').click()
+    }
+
+
+    SearchGoogleStoreLogoButton(){
+        return cy.get('[aria-label="Google Store home. Google Store logo."]')
+    }
+
+  }
+
+export default  new SearchPage();

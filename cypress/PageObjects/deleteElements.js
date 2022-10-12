@@ -3,7 +3,7 @@
 class deleteElements {
 
     get deleteFirstElement(){
-        return cy.get('[aria-label="Remove Pixel 6a 128GB Charcoal (Unlocked) from cart"]')
+        return cy.get('[aria-label="Remove Pixel 6a 128GB Chalk (Unlocked) from cart"]')
     }
 
     get deleteSecondElement(){

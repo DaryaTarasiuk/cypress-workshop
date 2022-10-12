@@ -2,20 +2,23 @@
 
 class addNewElement {
 
-    GoToCasePage(){
-        return cy.contains ('Case-Mate Tough Clear Case for Pixel 6a*').should('exist')
+    get CasePage(){
+        return cy.get('[aria-label="Case-Mate Tough Clear Case for Pixel 6a* (result 1 of 2)"]').click()
     }
+
 
      get BuyCaseButton(){
         return cy.get('button[aria-label="Buy Case-Mate Tough Clear Case for Pixel 6a*"]').eq(0)
     }
 
-    GoToOtterBoxPage(){
-        return cy.contains('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
-    }
-
     get BuyOtterBoxButton(){
         return cy.get('[aria-label="Buy OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*"]').eq(0)
+    }
+
+
+
+    GoToOtterBoxPage(){
+        return cy.contains('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
     }
 
     ChangeQuantityOtterBox(){

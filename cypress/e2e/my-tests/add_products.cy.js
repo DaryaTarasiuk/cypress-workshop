@@ -1,8 +1,12 @@
 //import PageObjects from '../../PageObjects/searchObject';
-import buyElement from "../../PageObjects/buyElement";
+import buyElement from "../../PageObjects/productDetailsPage";
 import addNewElement from "../../PageObjects/addNewElement";
 import deleteElements from "../../PageObjects/deleteElements";
-import searchObject from "../../PageObjects/searchObject";
+import searchObject from "../../PageObjects/searchPage";
+import SearchPage from "../../PageObjects/searchPage";
+import ProductDetailsPage from "../../PageObjects/productDetailsPage";
+import AddNewElement from "../../PageObjects/addNewElement";
+import DeleteElements from "../../PageObjects/deleteElements";
 
 
 describe ('Test adding products to the user card', () => {
@@ -15,50 +19,49 @@ describe ('Test adding products to the user card', () => {
 
     it ('Add products to the card', () => {
 
-        cy.visit ('https://store.google.com/us/?hl=en-US&regionRedirect=true')
+        SearchPage.open()
 
         cy.log('GIVEN User is at Accessories page')
-        searchObject.SearchButton().click()
+        SearchPage.SearchButton().click()
 
         cy.log('AND User can find the element he want')
-        searchObject.SearchElement()
+        SearchPage.SearchByProductName('pixel 6a')
 
         cy.log('WHEN User selects the product ')
-        searchObject.GoToElementPage().click()
+        SearchPage.selectProduct()
 
         cy.log('THEN User can buy this element')
-        buyElement.BuyButton.click()
+        ProductDetailsPage.BuyButton.click()
 
         // user select a carrier
-       buyElement.carrierChoose.click()
+       ProductDetailsPage.carrierChoose.click()
 
-        cy.log('AND User can choose the colour')
-        buyElement.colourChoose.click()
+        cy.log('AND User  choose the details')
+        ProductDetailsPage.colourChoose.click()
 
         //then the user skips the final question before adding the product to the cart
-       buyElement.TradeInChoose.click()
+       ProductDetailsPage.TradeInChoose.click()
 
        //then the user skips the final question before adding the product to the cart
-        buyElement.ProtectChoose.click()
+        ProductDetailsPage.ProtectChoose.click()
 
         cy.log('THEN Data product is presented in the card ')
-        buyElement.AddToCardButton.click()
+        ProductDetailsPage.AddToCardButton.click()
 
 
       cy.log('AND User can add new products to the card ')
-        searchObject.SearchButton().click()
+       SearchPage.SearchButton().click()
 
         //find product
-        searchObject.SearchElement()
+        SearchPage.SearchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
+        AddNewElement.CasePage
 
-        //go to product page
-        addNewElement.GoToCasePage().click()
         //click on Buy button
-        addNewElement.BuyCaseButton.click()
+        AddNewElement.BuyCaseButton.click()
 
         cy.log('THEN User can delete all products from the card')
-        deleteElements.deleteFirstElement.click()
-        deleteElements.deleteSecondElement.click()
+        DeleteElements.deleteFirstElement.click()
+        DeleteElements.deleteSecondElement.click()
         //everybody is happy there is no reason to spend money))
     })
             })
