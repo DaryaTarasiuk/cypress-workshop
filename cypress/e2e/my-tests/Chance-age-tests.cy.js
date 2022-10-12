@@ -30,11 +30,11 @@ it(`Test random age, second way(switch)`, function  () {
             console.log("Child");
             break;
 
-        case (age > 12&&age <= 19):
+        case (age > 12&& age <= 19):
             console.log("Teen");
             break;
 
-        case (age > 19 &&age <= 65):
+        case (age > 19 && age <= 65):
             console.log("Adult");
             break;
 
