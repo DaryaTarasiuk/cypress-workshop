@@ -24,20 +24,17 @@ it(`Test random age, second way(switch)`, function  () {
     let age = chance.age()
     console.log(age)
 
-    switch (age) {
+    switch (true) {
 
-        case (age >= 0):
-        case(age <= 12):
+        case (age >= 0 && age <= 12):
             console.log("Child");
             break;
 
-        case (age > 12):
-        case(age <= 19):
+        case (age > 12&&age <= 19):
             console.log("Teen");
             break;
 
-        case (age > 19):
-        case(age <= 65):
+        case (age > 19 &&age <= 65):
             console.log("Adult");
             break;
 
