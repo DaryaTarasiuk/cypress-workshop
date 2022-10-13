@@ -9,6 +9,10 @@ class SearchPage {
         return cy.get ('div[aria-label="Search the Google store"]')
    }
 
+   SearchButtonInCart(){
+        return cy.get('[aria-label="Google Store home. Google Store logo."]').click()
+   }
+
    SearchByProductName(productName){
         return cy.get ('input[placeholder="Search Google Store"]').type(`${productName}{enter}`)
     }
@@ -20,7 +24,7 @@ class SearchPage {
 
 
     SearchGoogleStoreLogoButton(){
-        return cy.get('[aria-label="Google Store home. Google Store logo."]')
+        return cy.get('[aria-label="Google Store home. Google Store logo."]').click()
     }
 
   }

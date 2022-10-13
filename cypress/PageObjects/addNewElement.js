@@ -17,8 +17,8 @@ class addNewElement {
 
 
 
-    GoToOtterBoxPage(){
-        return cy.contains('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
+    SelectOtterBox(){
+        return cy.get('[class="card-inner background-white no-variants"]').click()
     }
 
     ChangeQuantityOtterBox(){

@@ -26,11 +26,11 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         addNewElement.BuyCaseButton.click()
 
         cy.log('THEN User can add new element to the card')
-        SearchPage.SearchGoogleStoreLogoButton().click()
+        SearchPage.SearchButtonInCart()
         SearchPage.SearchButton().click()
         //find product
         SearchPage.SearchByProductName('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
-        addNewElement.GoToOtterBoxPage().click()
+        addNewElement.SelectOtterBox()
         addNewElement.BuyOtterBoxButton.click()
     })
 
