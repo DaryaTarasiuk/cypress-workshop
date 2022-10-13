@@ -34,23 +34,23 @@ describe ('Test adding products to the user card', () => {
         ProductDetailsPage.BuyButton.click()
 
         // user select a carrier
-       ProductDetailsPage.carrierChoose.click()
+        ProductDetailsPage.carrierChoose.click()
 
         cy.log('AND User  choose the details')
         ProductDetailsPage.colourChoose.click()
 
         //then the user skips the final question before adding the product to the cart
-       ProductDetailsPage.TradeInChoose.click()
+        ProductDetailsPage.TradeInChoose.click()
 
-       //then the user skips the final question before adding the product to the cart
+        //then the user skips the final question before adding the product to the cart
         ProductDetailsPage.ProtectChoose.click()
 
         cy.log('THEN Data product is presented in the card ')
         ProductDetailsPage.AddToCardButton.click()
 
 
-      cy.log('AND User can add new products to the card ')
-       SearchPage.SearchButton().click()
+        cy.log('AND User can add new products to the card ')
+        SearchPage.SearchButton().click()
 
         //find product
         SearchPage.SearchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
@@ -58,7 +58,9 @@ describe ('Test adding products to the user card', () => {
 
         //click on Buy button
         AddNewElement.BuyCaseButton.click()
+    })
 
+    after(()=>{
         cy.log('THEN User can delete all products from the card')
         DeleteElements.deleteFirstElement.click()
         DeleteElements.deleteSecondElement.click()

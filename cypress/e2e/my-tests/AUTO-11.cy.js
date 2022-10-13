@@ -12,7 +12,7 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
     })
 
     before(() => {
-        cy.visit('https://store.google.com/us/?hl=en-US&regionRedirect=true')
+        SearchPage.open()
         cy.log('GIVEN User is at Accessories page')
         SearchPage.SearchButton().click()
 
