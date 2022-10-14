@@ -1,8 +1,3 @@
-//import PageObjects from '../../PageObjects/searchObject';
-import buyElement from "../../PageObjects/productDetailsPage";
-import addNewElement from "../../PageObjects/addNewElement";
-import deleteElements from "../../PageObjects/deleteElements";
-import searchObject from "../../PageObjects/searchPage";
 import SearchPage from "../../PageObjects/searchPage";
 import ProductDetailsPage from "../../PageObjects/productDetailsPage";
 import AddNewElement from "../../PageObjects/addNewElement";
@@ -28,7 +23,13 @@ describe ('Test adding products to the user card', () => {
         SearchPage.SearchByProductName('pixel 6a')
 
         cy.log('WHEN User selects the product ')
-        SearchPage.selectProduct()
+        SearchPage.selectProduct().then((element)=> {
+            const nameEl = element.prop('innerText');
+            cy.log('__________________________________');
+            cy.log(nameEl);
+        })
+
+
 
         cy.log('THEN User can buy this element')
         ProductDetailsPage.BuyButton.click()
@@ -54,13 +55,17 @@ describe ('Test adding products to the user card', () => {
 
         //find product
         SearchPage.SearchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
-        AddNewElement.CasePage
-
+        AddNewElement.CasePage.then((element)=> {
+            const nameEl = element.prop('innerText');
+            cy.log('__________________________________');
+            cy.log(nameEl);
+        })
         //click on Buy button
         AddNewElement.BuyCaseButton.click()
+
     })
 
-    after(()=>{
+     after(()=>{
         cy.log('THEN User can delete all products from the card')
         DeleteElements.deleteFirstElement.click()
         DeleteElements.deleteSecondElement.click()
