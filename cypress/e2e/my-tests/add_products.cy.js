@@ -12,7 +12,7 @@ describe ('Test adding products to the user card', () => {
         return false
     })
 
-    it ('Add products to the card', () => {
+    it ('Add multipl products to the card', () => {
 
         SearchPage.open()
 
@@ -62,6 +62,7 @@ describe ('Test adding products to the user card', () => {
         })
         //click on Buy button
         AddNewElement.BuyCaseButton.click()
+
 
     })
 
