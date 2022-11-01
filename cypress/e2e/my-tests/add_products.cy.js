@@ -14,13 +14,12 @@ describe ('Test adding products to the user card', () => {
         return false
     })
 
-    it ('Add multipl products to the card', () => {
+    it ('Add multiple products to the card', () => {
 
         SearchPage.open()
 
-        cy.log('GIVEN User is at Accessories page')
         SearchPage.searchButton().click()
-
+        cy.log(' User is at Accessories page')
         cy.log('AND User can find the element he want')
         SearchPage.searchByProductName('pixel 6a')
 
@@ -72,7 +71,7 @@ describe ('Test adding products to the user card', () => {
         cy.log('THEN User can delete all products from the card')
         DeleteProductsPage.deleteFirstElement.click()
         DeleteProductsPage.deleteSecondElement.click()
-        //everybody is happy there is no reason to spend money))
+
     })
             })
 

@@ -10,7 +10,7 @@ class SearchPage {
    }
 
    searchButtonInCart(){
-        return cy.get('[aria-label="Google Store home. Google Store logo."]').click()
+         cy.get('[aria-label="Google Store home. Google Store logo."]').click()
    }
 
    searchByProductName(productName){
