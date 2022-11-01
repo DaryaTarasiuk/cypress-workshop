@@ -1,7 +1,9 @@
 import SearchPage from "../../PageObjects/searchPage";
 import ProductDetailsPage from "../../PageObjects/productDetailsPage";
-import AddNewElement from "../../PageObjects/addNewElement";
-import DeleteElements from "../../PageObjects/deleteElements";
+import AddNewElement from "../../PageObjects/addNewElementPage";
+import DeleteElements from "../../PageObjects/deleteProductsPage";
+import AddNewElementPage from "../../PageObjects/addNewElementPage";
+import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
 
 
 describe ('Test adding products to the user card', () => {
@@ -17,13 +19,13 @@ describe ('Test adding products to the user card', () => {
         SearchPage.open()
 
         cy.log('GIVEN User is at Accessories page')
-        SearchPage.SearchButton().click()
+        SearchPage.searchButton().click()
 
         cy.log('AND User can find the element he want')
-        SearchPage.SearchByProductName('pixel 6a')
+        SearchPage.searchByProductName('pixel 6a')
 
         cy.log('WHEN User selects the product ')
-        SearchPage.selectProduct().then((element)=> {
+        SearchPage.selectProduct('pixel 6a').then((element)=> {
             const nameEl = element.prop('innerText');
             cy.log('__________________________________');
             cy.log(nameEl);
@@ -32,44 +34,44 @@ describe ('Test adding products to the user card', () => {
 
 
         cy.log('THEN User can buy this element')
-        ProductDetailsPage.BuyButton.click()
+        ProductDetailsPage.buyButton.click()
 
         // user select a carrier
-        ProductDetailsPage.carrierChoose.click()
+        ProductDetailsPage.carrierSelect.click()
 
         cy.log('AND User  choose the details')
-        ProductDetailsPage.colourChoose.click()
+        ProductDetailsPage.colourSelect.click()
 
         //then the user skips the final question before adding the product to the cart
-        ProductDetailsPage.TradeInChoose.click()
+        ProductDetailsPage.tradeInSelect.click()
 
         //then the user skips the final question before adding the product to the cart
-        ProductDetailsPage.ProtectChoose.click()
+        ProductDetailsPage.protectSelect.click()
 
         cy.log('THEN Data product is presented in the card ')
-        ProductDetailsPage.AddToCardButton.click()
+        ProductDetailsPage.addToCardButton.click()
 
 
         cy.log('AND User can add new products to the card ')
-        SearchPage.SearchButton().click()
+        SearchPage.searchButton().click()
 
         //find product
-        SearchPage.SearchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
-        AddNewElement.CasePage.then((element)=> {
+        SearchPage.searchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
+        AddNewElementPage.selectProduct.then((element)=> {
             const nameEl = element.prop('innerText');
             cy.log('__________________________________');
             cy.log(nameEl);
         })
         //click on Buy button
-        AddNewElement.BuyCaseButton.click()
+        AddNewElementPage.buyCaseButton.click()
 
 
     })
 
      after(()=>{
         cy.log('THEN User can delete all products from the card')
-        DeleteElements.deleteFirstElement.click()
-        DeleteElements.deleteSecondElement.click()
+        DeleteProductsPage.deleteFirstElement.click()
+        DeleteProductsPage.deleteSecondElement.click()
         //everybody is happy there is no reason to spend money))
     })
             })

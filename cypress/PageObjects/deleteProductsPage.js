@@ -1,6 +1,6 @@
 ///reference types="Cypress"
 
-class deleteElements {
+class DeleteProductsPage {
 
     get deleteFirstElement(){
         return cy.get('[aria-label="Remove Pixel 6a 128GB Chalk (Unlocked) from cart"]')
@@ -16,4 +16,4 @@ class deleteElements {
 
 }
 
-export default new deleteElements();
+export default new DeleteProductsPage();

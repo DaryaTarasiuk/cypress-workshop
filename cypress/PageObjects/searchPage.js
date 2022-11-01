@@ -5,18 +5,17 @@ class SearchPage {
         cy.visit ('/us/?hl=en-US&regionRedirect=true')
     }
 
-   SearchButton(){
+   searchButton(){
         return cy.get ('div[aria-label="Search the Google store"]')
    }
 
-   SearchButtonInCart(){
+   searchButtonInCart(){
         return cy.get('[aria-label="Google Store home. Google Store logo."]').click()
    }
 
-   SearchByProductName(productName){
-        return cy.get ('input[placeholder="Search Google Store"]').type(`${productName}{enter}`)
+   searchByProductName(productName){
+         cy.get ('input[placeholder="Search Google Store"]').type(`${productName}{enter}`)
     }
-
 
     selectProduct(productName){
         return cy.contains ('Pixel 6a').should('exist').click()

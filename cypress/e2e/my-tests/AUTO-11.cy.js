@@ -1,6 +1,9 @@
 import SearchPage from "../../PageObjects/searchPage";
-import addNewElement from "../../PageObjects/addNewElement";
-import deleteElements from "../../PageObjects/deleteElements";
+import addNewElement from "../../PageObjects/addNewElementPage";
+import deleteProductsPage from "../../PageObjects/deleteProductsPage";
+import addNewElementPage from "../../PageObjects/addNewElementPage";
+import AddNewElementPage from "../../PageObjects/addNewElementPage";
+import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
 
 
 describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
@@ -14,24 +17,24 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
     before(() => {
         SearchPage.open()
         cy.log('GIVEN User is at Accessories page')
-        SearchPage.SearchButton().click()
+        SearchPage.searchButton().click()
 
         cy.log('AND User can find the element he want')
-        SearchPage.SearchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
+        SearchPage.searchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
 
         cy.log('THEN User selects the product ')
-        addNewElement.CasePage
+        AddNewElementPage.selectProduct
 
         cy.log('AND User can add this element to the card')
-        addNewElement.BuyCaseButton.click()
+        addNewElement.buyCaseButton.click()
 
         cy.log('THEN User can add new element to the card')
-        SearchPage.SearchButtonInCart()
-        SearchPage.SearchButton().click()
+        SearchPage.searchButtonInCart()
+        SearchPage.searchButton().click()
         //find product
-        SearchPage.SearchByProductName('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
-        addNewElement.SelectOtterBox()
-        addNewElement.BuyOtterBoxButton.click()
+        SearchPage.searchByProductName('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
+        AddNewElementPage.selectOtterBox()
+        AddNewElementPage.buyOtterBoxButton.click()
     })
 
 
@@ -39,10 +42,10 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         cy.visit('https://store.google.com/us/cart?hl=en-US')
 
         cy.log('THEN user change the quantity of some product')
-        addNewElement.ChangeQuantityOtterBox()
+        AddNewElementPage.changeQuantityOtterBox()
 
         cy.log('AND finally delete one product')
-        deleteElements.deleteThirdElement.click()
+        DeleteProductsPage.deleteThirdElement.click()
 
     })
 })
