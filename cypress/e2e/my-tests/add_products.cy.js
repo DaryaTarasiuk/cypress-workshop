@@ -14,6 +14,8 @@ describe ('Test adding products to the user card', () => {
         return false
     })
 
+
+
     it ('Add multiple products to the card', () => {
 
         SearchPage.open()
@@ -28,7 +30,8 @@ describe ('Test adding products to the user card', () => {
 
 
         cy.log('AND User can buy this element')
-        ProductDetailsPage.buyButton.click()
+
+        ProductDetailsPage.buyButton
 
         // user select a carrier
         ProductDetailsPage.colourSelect.click()
@@ -43,6 +46,7 @@ describe ('Test adding products to the user card', () => {
         ProductDetailsPage.protectSelect.click()
 
         cy.log('THEN Data product is presented in the card ')
+
         ProductDetailsPage.addToCardButton.click()
 
 
@@ -53,7 +57,8 @@ describe ('Test adding products to the user card', () => {
         SearchPage.searchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
         AddNewElementPage.selectProduct('Case-Mate Tough Clear Case for Pixel 6a*')
         //click on Buy button
-        AddNewElementPage.buyCaseButton.click()
+       // AddNewElementPage.buyCaseButton.click()
+        ProductDetailsPage.buyButton
 
 
     })

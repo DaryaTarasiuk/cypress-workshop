@@ -4,6 +4,9 @@ class SearchPage {
     open() {
         cy.visit ('/us/?hl=en-US&regionRedirect=true')
     }
+    openCardPage(){
+        cy.visit ('/us/cart?hl=en-US')
+    }
 
    searchButton(){
         return cy.get ('div[aria-label="Search the Google store"]')
