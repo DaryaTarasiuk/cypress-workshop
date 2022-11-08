@@ -33,7 +33,7 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         SearchPage.searchButton().click()
         //find product
         SearchPage.searchByProductName('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
-        AddNewElementPage.selectOtterBox()
+        AddNewElementPage.selectProduct('OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*')
         AddNewElementPage.buyOtterBoxButton.click()
     })
 
@@ -45,7 +45,7 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         AddNewElementPage.changeQuantityOtterBox(2)
 
         cy.log('AND finally delete one product')
-        DeleteProductsPage.deleteThirdElement.click()
+       DeleteProductsPage.deleteProductFromCard('OtterBox Alpha Flex Screen Protector for Pixel 6a')
 
     })
 })

@@ -60,8 +60,9 @@ describe ('Test adding products to the user card', () => {
 
      after(()=>{
         cy.log('THEN User can delete all products from the card')
-        DeleteProductsPage.deleteFirstElement.click()
-        DeleteProductsPage.deleteSecondElement.click()
+         DeleteProductsPage.deleteProductFromCard('Pixel 6a 128GB Chalk (Fi)')
+         DeleteProductsPage.deleteProductFromCard('CaseMate Tough Clear Case for Pixel 6a')
+
 
     })
             })

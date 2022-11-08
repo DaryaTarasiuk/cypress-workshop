@@ -14,7 +14,7 @@ class SearchPage {
     }
 
     selectProduct(productName){
-        return cy.contains ('Pixel 6a').should('exist').click()
+        return cy.contains (productName).should('exist').click()
     }
 
 

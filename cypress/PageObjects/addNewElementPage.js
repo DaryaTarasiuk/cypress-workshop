@@ -6,7 +6,6 @@ class AddNewElementPage {
          return cy.contains (productName).should('exist').click()
     }
 
-
      get buyCaseButton(){
         return cy.get('button[class="transaction qgwtFf"]').eq(1)
     }
@@ -15,9 +14,6 @@ class AddNewElementPage {
         return cy.get('[aria-label="Buy OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*"]').eq(1)
     }
 
-    selectOtterBox(){
-        return cy.get('[class="card-inner background-white no-variants"]').click()
-    }
 
     changeQuantityOtterBox(quantity){
         return cy.get('[aria-label="Product Quantity"]').eq(0).select(quantity)
