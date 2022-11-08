@@ -23,7 +23,7 @@ describe ('Test adding products to the user card', () => {
         cy.log('AND User can find the element he want')
         SearchPage.searchByProductName('pixel 6a')
 
-        cy.log('WHEN User selects the product ')
+        cy.log('THEN User selects the product ')
         SearchPage.selectProduct('pixel 6a').then((element)=> {
             const nameEl = element.prop('innerText');
             cy.log('__________________________________');
@@ -32,14 +32,14 @@ describe ('Test adding products to the user card', () => {
 
 
 
-        cy.log('THEN User can buy this element')
+        cy.log('AND User can buy this element')
         ProductDetailsPage.buyButton.click()
 
         // user select a carrier
-        ProductDetailsPage.carrierSelect.click()
-
-        cy.log('AND User  choose the details')
         ProductDetailsPage.colourSelect.click()
+
+        cy.log('AND  choose the details')
+        ProductDetailsPage.carrierSelect.click()
 
         //then the user skips the final question before adding the product to the cart
         ProductDetailsPage.tradeInSelect.click()

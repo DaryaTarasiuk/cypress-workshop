@@ -8,11 +8,11 @@ class ProductDetailsPage {
     }
 
     get carrierSelect(){
-        return  cy.get('[class="HuudXd csWRPe"]').eq(1)
+        return  cy.get('[data-test="model_selection_panel"]').eq(1)
     }
 
     get colourSelect(){
-        return  cy.get('[class="HuudXd yvlQmd glq7jb"]')
+        return  cy.get('[aria-label="Chalk"]')
     }
 
     get tradeInSelect(){
