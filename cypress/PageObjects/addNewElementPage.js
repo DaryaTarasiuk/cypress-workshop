@@ -6,8 +6,10 @@ class AddNewElementPage {
          return cy.contains (productName).should('exist').click()
     }
 
-    changeQuantityOtterBox(quantity){
-        return cy.get('[aria-label="Product Quantity"]').eq(0).select(quantity)
+    changeQuantityOfProduct(productName, quantity){
+       return cy.get('[aria-label="Product Quantity"]').eq(0).select(quantity)
+
+
     }
 
 }

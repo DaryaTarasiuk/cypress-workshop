@@ -35,6 +35,11 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
             productDetailsPage.buyButton.click()
 
 
+           cy.get('[data-test-lineitem-title]').invoke('attr', 'CaseMate Tough Clear Case for Pixel 6a')
+               .then( product=> {
+              cy.wrap(product).as('product')
+           })
+
             //TODO Добавить проверку, что отображается новая страница:корзина, проверить продукт в корзине
         })
 
@@ -46,8 +51,11 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         cy.log('GIVEN User is at the card')
         searchPage.openCardPage()
 
-        cy.log('WHEN user changes the quantity of OtterBox')
-        AddNewElementPage.changeQuantityOtterBox(2)
+        cy.log('WHEN user changes the quantity of Product')
+        AddNewElementPage.changeQuantityOfProduct(`OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*`,3)
+
+
+
 //TODO проверить итоговую сумму
 
     })
