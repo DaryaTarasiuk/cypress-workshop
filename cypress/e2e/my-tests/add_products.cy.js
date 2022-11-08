@@ -24,12 +24,7 @@ describe ('Test adding products to the user card', () => {
         SearchPage.searchByProductName('pixel 6a')
 
         cy.log('THEN User selects the product ')
-        SearchPage.selectProduct('pixel 6a').then((element)=> {
-            const nameEl = element.prop('innerText');
-            cy.log('__________________________________');
-            cy.log(nameEl);
-        })
-
+        SearchPage.selectProduct('pixel 6a')
 
 
         cy.log('AND User can buy this element')
@@ -56,11 +51,7 @@ describe ('Test adding products to the user card', () => {
 
         //find product
         SearchPage.searchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
-        AddNewElementPage.selectProduct.then((element)=> {
-            const nameEl = element.prop('innerText');
-            cy.log('__________________________________');
-            cy.log(nameEl);
-        })
+        AddNewElementPage.selectProduct('Case-Mate Tough Clear Case for Pixel 6a*')
         //click on Buy button
         AddNewElementPage.buyCaseButton.click()
 
