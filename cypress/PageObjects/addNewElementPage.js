@@ -7,7 +7,7 @@ class AddNewElementPage {
     }
 
     changeQuantityOfProduct(productName, quantity){
-       return cy.get('[aria-label="Product Quantity"]').eq(0).select(quantity)
+       return cy.get('[aria-label="Product Quantity"]').eq(0).select(quantity - 1)
 
 
     }

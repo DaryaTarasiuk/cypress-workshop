@@ -8,40 +8,45 @@ import productDetailsPage from "../../PageObjects/productDetailsPage";
 import searchPage from "../../PageObjects/searchPage";
 
 
-
-describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
+describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
     Cypress.on('uncaught:exception', (err, runnable) => {
         // returning false here prevents Cypress from
         // failing the test
         return false
     })
+    const PRODUCTS = [{name: 'Case-Mate Tough Clear Case for Pixel 6a*', price: 24.99, quantity:4},
+        {name: 'OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*', price: 44.95, quantity:1}]
 
     before(() => {
-        const PRODUCTS = ['Case-Mate Tough Clear Case for Pixel 6a*',
-            'OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*']
-       PRODUCTS.forEach(productName => {
+
+        PRODUCTS.forEach(product => {
             cy.log('GIVEN User is at Search page')
             SearchPage.open()
             cy.log('WHEN User clicks on search button')
             SearchPage.searchButton().click()
 
             cy.log('AND User enters  product name into search input ')
-            SearchPage.searchByProductName(productName)
+            SearchPage.searchByProductName(product.name)
 
             cy.log('AND User selects the product at AddNewElementPage ')
-            AddNewElementPage.selectProduct(productName)
+            AddNewElementPage.selectProduct(product.name)
 
             cy.log('AND User clicks on buy button')
             productDetailsPage.buyButton.click()
 
 
-           cy.get('[data-test-lineitem-title]').invoke('attr', 'CaseMate Tough Clear Case for Pixel 6a')
-               .then( product=> {
-              cy.wrap(product).as('product')
-           })
+            cy.get('[data-test-lineitem-title]').invoke('text')
+                .then(product => {
+                    cy.wrap(product).as('product')
+                })
 
-            //TODO Добавить проверку, что отображается новая страница:корзина, проверить продукт в корзине
+            cy.get('[data-test-line-item-price]').invoke('text')
+                .then(price => {
+                    cy.wrap(price).as('price')
+                })
+
+            //TODO проверить продукт в корзине
         })
 
     })
@@ -53,7 +58,16 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         searchPage.openCardPage()
 
         cy.log('WHEN user changes the quantity of Product')
-        AddNewElementPage.changeQuantityOfProduct(`OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*`,3)
+        AddNewElementPage.changeQuantityOfProduct(PRODUCTS[0].name, 4)
+        cy.get('circle').should('exist')
+        cy.get('circle').should('not.exist')
+
+
+        cy.get(`[data-test-line-item-price]`).each(($el, index) => {
+            cy.wrap($el).invoke('text').then(actualValue => {
+                expect(actualValue).to.eq(`$${PRODUCTS[index].price.toFixed(2)}`)
+            })
+        })
 
 
 //TODO проверить итоговую сумму

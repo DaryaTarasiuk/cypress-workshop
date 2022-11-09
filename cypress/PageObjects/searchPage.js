@@ -17,7 +17,7 @@ class SearchPage {
     }
 
     selectProduct(productName){
-        return cy.contains (productName).should('exist').click()
+        return cy.contains ( productName).should('exist').click()
     }
 
 
