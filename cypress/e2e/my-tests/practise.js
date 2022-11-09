@@ -9,6 +9,8 @@ const options={
 };
 console.log(Object.keys(options).length);
 
+const {border,bg}=options.colors;
+console.log(border)
 //console.log(options.name);
 
 //delete options.name;
@@ -24,4 +26,11 @@ for(let key in options ){
     }
 }
 
+const arr =[2,12,26,8,10];
+arr.sort(compareNum);
+console.log(arr);
+
+function compareNum (a,b){
+    return a-b;
+}
 

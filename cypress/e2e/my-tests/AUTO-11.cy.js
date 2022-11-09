@@ -8,6 +8,7 @@ import productDetailsPage from "../../PageObjects/productDetailsPage";
 import searchPage from "../../PageObjects/searchPage";
 
 
+
 describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
     Cypress.on('uncaught:exception', (err, runnable) => {
@@ -19,17 +20,17 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
     before(() => {
         const PRODUCTS = ['Case-Mate Tough Clear Case for Pixel 6a*',
             'OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*']
-       PRODUCTS.forEach(product => {
+       PRODUCTS.forEach(productName => {
             cy.log('GIVEN User is at Search page')
             SearchPage.open()
             cy.log('WHEN User clicks on search button')
             SearchPage.searchButton().click()
 
             cy.log('AND User enters  product name into search input ')
-            SearchPage.searchByProductName(product)
+            SearchPage.searchByProductName(productName)
 
             cy.log('AND User selects the product at AddNewElementPage ')
-            AddNewElementPage.selectProduct(product)
+            AddNewElementPage.selectProduct(productName)
 
             cy.log('AND User clicks on buy button')
             productDetailsPage.buyButton.click()
@@ -47,13 +48,12 @@ describe ('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
 
     it('Change the quantity of products in the card', () => {
-        //TODO PageObject переход в корзину
+        //TODO переход в корзину   из PageObject
         cy.log('GIVEN User is at the card')
         searchPage.openCardPage()
 
         cy.log('WHEN user changes the quantity of Product')
         AddNewElementPage.changeQuantityOfProduct(`OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*`,3)
-
 
 
 //TODO проверить итоговую сумму

@@ -3,7 +3,7 @@
 class AddNewElementPage {
 
      selectProduct(productName){
-         return cy.contains (productName).should('exist').click()
+         return cy.contains ('[class="text-container product-text-container"]',productName).should('exist').click()
     }
 
     changeQuantityOfProduct(productName, quantity){
