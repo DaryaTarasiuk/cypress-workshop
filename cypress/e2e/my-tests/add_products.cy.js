@@ -33,7 +33,7 @@ describe('Test adding products to the user card', () => {
             SearchPage.selectProduct(product.name)
 
             if (product.name == "Pixel 6a 128GB Chalk (Fi)") {
-                cy.log('AND User clicks on buy button')
+                cy.log('AND User clicks on buy button if the product is multiple')
                 ProductDetailsPage.buyButton.click()
 
                 cy.log('AND  choose the details')
@@ -46,6 +46,7 @@ describe('Test adding products to the user card', () => {
                 ProductDetailsPage.addToCardButton.click()
 
             } else {
+                cy.log('AND User clicks on Buy button if the product is not multiple  ')
                 ProductDetailsPage.buyButton.click()
             }
 
@@ -74,7 +75,7 @@ describe('Test adding products to the user card', () => {
         DeleteProductsPage.deleteProductFromCard(multipleProducts.name).eq(0).click()
         DeleteProductsPage.deleteProductFromCard(multipleProducts.name).eq(1).click()
 
-        cy.log('THEN users card is empty')
+        cy.log('THEN the card of user is empty')
         cy.get('[data-test-cart-empty-text]').invoke('text')
             .then(items => {
                 cy.wrap(items).as('items')
