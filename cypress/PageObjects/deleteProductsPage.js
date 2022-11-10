@@ -2,7 +2,7 @@
 
 class DeleteProductsPage {
 
-    deleteProductFromCard(productName){
+    deleteProductFromCard(productName) {
         //cy.get(("button:contains('Remove')")).contains(productName).click()
         cy.contains('button', 'Remove',productName).click()
     }

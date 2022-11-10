@@ -35,16 +35,15 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
             cy.log('AND User clicks on buy button')
             productDetailsPage.buyButton.click()
 
-
-            cy.get('[data-test-lineitem-title]').invoke('text')
-                .then(product => {
-                    cy.wrap(product).as('product')
+            cy.log('THEN User checks the price of selected product in the card')
+            cy.get(`[data-test-line-item-price]`).each(($el, index) => {
+                cy.wrap($el).invoke('text').then(actualValue => {
+                    expect(actualValue).to.eq(`$${PRODUCTS[index].price.toFixed(2)}`)
                 })
+            })
 
-            cy.get('[data-test-line-item-price]').invoke('text')
-                .then(price => {
-                    cy.wrap(price).as('price')
-                })
+
+
 
             //TODO проверить продукт в корзине
         })
@@ -62,15 +61,15 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         cy.get('circle').should('exist')
         cy.get('circle').should('not.exist')
 
-
-        cy.get(`[data-test-line-item-price]`).each(($el, index) => {
-            cy.wrap($el).invoke('text').then(actualValue => {
-                expect(actualValue).to.eq(`$${PRODUCTS[index].price.toFixed(2)}`)
+//TODO проверить итоговую сумму
+        cy.log('Then user checks  Estimated total')
+        cy.get(`[data-test-price-subtotal]`).each(($el, index) => {
+            cy.wrap($el).invoke('text').then(estimatedTotal => {
+                expect(estimatedTotal).to.eq(`$${(PRODUCTS[0].price*PRODUCTS[0].quantity)+(PRODUCTS[1].price*PRODUCTS[1].quantity)}`)
             })
         })
 
 
-//TODO проверить итоговую сумму
 
     })
 })

@@ -4,19 +4,19 @@ class SearchPage {
     open() {
         cy.visit ('/us/?hl=en-US&regionRedirect=true')
     }
-    openCardPage(){
+    openCardPage() {
         cy.visit ('/us/cart?hl=en-US')
     }
 
-   searchButton(){
+   searchButton() {
         return cy.get ('div[aria-label="Search the Google store"]')
    }
 
-   searchByProductName(productName){
+   searchByProductName(productName) {
          cy.get ('input[placeholder="Search Google Store"]').type(`${productName}{enter}`)
     }
 
-    selectProduct(productName){
+    selectProduct(productName) {
         return cy.contains ( productName).should('exist').click()
     }
 
