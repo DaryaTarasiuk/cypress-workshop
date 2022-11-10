@@ -16,8 +16,8 @@ class SearchPage {
          cy.get ('input[placeholder="Search Google Store"]').type(`${productName}{enter}`)
     }
 
-    selectProduct(productName) {
-        return cy.contains ( productName).should('exist').click()
+    selectProduct() {
+         cy.get ( '[class="text-container product-text-container"]').should('exist').click()
     }
 
 

@@ -15,8 +15,6 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         // failing the test
         return false
     })
-    //const PRODUCTS = [{name: 'Case-Mate Tough Clear Case for Pixel 6a*', price: 24.99, quantity: 4},
-        //{name: 'OtterBox Alpha Flex Antimicrobial Screen Protector for Pixel 6a*', price: 44.95, quantity: 1}]
 
     before(() => {
 

@@ -4,72 +4,84 @@ import AddNewElement from "../../PageObjects/addNewElementPage";
 import DeleteElements from "../../PageObjects/deleteProductsPage";
 import AddNewElementPage from "../../PageObjects/addNewElementPage";
 import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
+import multipleProducts from "../../fixtures/multipleProducts.json"
+import productDetailsPage from "../../PageObjects/productDetailsPage";
+import products from "../../fixtures/products.json";
 
-describe ('Test adding products to the user card', () => {
+describe('Test adding products to the user card', () => {
 
-    Cypress.on ('uncaught:exception', (err, runnable) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
         // returning false here prevents Cypress from
         // failing the test
         return false
     })
 
 
+    it('Add multiple products to the card', () => {
 
-    it ('Add multiple products to the card', () => {
+        multipleProducts.forEach(product => {
+            cy.log('GIVEN User is at Search page')
+            SearchPage.open()
 
-        SearchPage.open()
+            cy.log('WHEN User clicks on search button')
+            SearchPage.searchButton().click()
 
-        SearchPage.searchButton().click()
-        cy.log(' User is at Accessories page')
-        cy.log('AND User can find the element he want')
-        SearchPage.searchByProductName('pixel 6a')
+            cy.log('AND User enters  product name into search input ')
+            SearchPage.searchByProductName(product.name)
 
-        cy.log('THEN User selects the product ')
-        SearchPage.selectProduct('pixel 6a')
+            cy.log('AND User selects the product at AddNewElementPage ')
+            SearchPage.selectProduct(product.name)
 
+            if (product.name == "Pixel 6a 128GB Chalk (Fi)") {
+                cy.log('AND User clicks on buy button')
+                ProductDetailsPage.buyButton.click()
 
-        cy.log('AND User can buy this element')
+                cy.log('AND  choose the details')
+                ProductDetailsPage.colourSelect.click()
+                ProductDetailsPage.carrierSelect.click()
+                ProductDetailsPage.tradeInSelect.click()
+                ProductDetailsPage.protectSelect.click()
 
-        ProductDetailsPage.buyButton.click()
+                cy.log('AND Data product is presented in the card ')
+                ProductDetailsPage.addToCardButton.click()
 
-        // user select a carrier
-        ProductDetailsPage.colourSelect.click()
-
-        cy.log('AND  choose the details')
-        ProductDetailsPage.carrierSelect.click()
-
-        //then the user skips the final question before adding the product to the cart
-        ProductDetailsPage.tradeInSelect.click()
-
-        //then the user skips the final question before adding the product to the cart
-        ProductDetailsPage.protectSelect.click()
-
-        cy.log('THEN Data product is presented in the card ')
-
-        ProductDetailsPage.addToCardButton.click()
+            } else {
+                ProductDetailsPage.buyButton.click()
+            }
 
 
+        })
+        cy.log('THEN User checks the title of selected product in the card')
+        cy.get(`[data-test-lineitem-title]`).each(($el, index) => {
+            cy.wrap($el).invoke('text').then(actualValue => {
+                expect(actualValue).to.eq(`${multipleProducts[index].name}`)
 
-
-        cy.log('AND User can add new products to the card ')
-        SearchPage.searchButton().click()
-
-        //find product
-        SearchPage.searchByProductName('Case-Mate Tough Clear Case for Pixel 6a*')
-        AddNewElementPage.selectProduct('Case-Mate Tough Clear Case for Pixel 6a*')
-        //click on Buy button
-       // AddNewElementPage.buyCaseButton.click()
-        ProductDetailsPage.buyButton.click()
-
-
-    })
-
-     after(()=>{
-        cy.log('THEN User can delete all products from the card')
-         DeleteProductsPage.deleteProductFromCard('Pixel 6a 128GB Chalk (Fi)')
-         DeleteProductsPage.deleteProductFromCard('CaseMate Tough Clear Case for Pixel 6a')
-
-
-    })
             })
+        })
+        cy.log('THEN User checks the price of selected product in the card')
+        cy.get(`[data-test-line-item-price]`).each(($el, index) => {
+            cy.wrap($el).invoke('text').then(actualValue => {
+                expect(actualValue).to.eq(`$${multipleProducts[index].price.toFixed(2)}`)
+
+            })
+        })
+    })
+
+    after(() => {
+        cy.log('AND User  delete all products from the card')
+
+
+        DeleteProductsPage.deleteProductFromCard(multipleProducts.name).eq(0).click()
+        DeleteProductsPage.deleteProductFromCard(multipleProducts.name).eq(1).click()
+
+        cy.log('THEN users card is empty')
+        cy.get('[data-test-cart-empty-text]').invoke('text')
+            .then(items => {
+                cy.wrap(items).as('items')
+                    expect(items).to.eq('Your cart is empty')
+            })
+
+
+    })
+})
 
