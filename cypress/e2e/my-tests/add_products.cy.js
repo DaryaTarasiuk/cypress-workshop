@@ -5,7 +5,6 @@ import DeleteElements from "../../PageObjects/deleteProductsPage";
 import AddNewElementPage from "../../PageObjects/addNewElementPage";
 import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
 
-
 describe ('Test adding products to the user card', () => {
 
     Cypress.on ('uncaught:exception', (err, runnable) => {
