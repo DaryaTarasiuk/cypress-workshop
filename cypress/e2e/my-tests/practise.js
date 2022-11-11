@@ -34,3 +34,18 @@ function compareNum (a,b){
     return a-b;
 }
 
+cy.get('[data-test-lineitem-title]').invoke('text')
+    .then(product => {
+        cy.wrap(product).as('product')
+    })
+
+cy.get('[data-test-line-item-price]').invoke('text')
+    .then(price => {
+        cy.wrap(price).as('price')
+    })
+
+cy.get(`[data-test-line-item-price]`).each(($el, index) => {
+    cy.wrap($el).invoke('text').then(actualValue => {
+        expect(actualValue).to.eq(`$${PRODUCTS[index].price.toFixed(2)}`)
+    })
+})

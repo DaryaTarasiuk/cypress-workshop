@@ -1,11 +1,12 @@
 ///reference types="Cypress"
-import multipleProducts from "../fixtures/multipleProducts.json"
+
 class DeleteProductsPage {
 
     deleteProductFromCard(productName) {
-      // cy.contains('button' ,'Remove',productName).click()
-       return cy.get('button[data-test-remove-btn]', productName)
+        cy.get(`button[aria-label="Remove ${productName} from cart"]`).click()
+        cy.contains(productName).should('not.exist')
     }
 }
+
 
 export default new DeleteProductsPage();
