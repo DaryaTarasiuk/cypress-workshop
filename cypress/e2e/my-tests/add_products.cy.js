@@ -70,16 +70,16 @@ describe('Test adding products to the user card', () => {
 
     after(() => {
 
-        multipleProducts.forEach(product=> {
-        cy.log('AND User  delete all products from the card')
-        DeleteProductsPage.deleteProductFromCard(product.name)
-       })
+        multipleProducts.forEach(product => {
+            cy.log('AND User  delete all products from the card')
+            DeleteProductsPage.deleteProductFromCard(product.name)
+        })
 
         cy.log('THEN the card of user is empty')
         cy.get('[data-test-cart-empty-text]').invoke('text')
             .then(items => {
                 cy.wrap(items).as('items')
-                    expect(items).to.eq('Your cart is empty')
+                expect(items).to.eq('Your cart is empty')
             })
 
     })
