@@ -1,8 +1,9 @@
-import SearchPage from "../../PageObjects/searchPage";
-import AddNewElementPage from "../../PageObjects/addNewElementPage";
-import productDetailsPage from "../../PageObjects/productDetailsPage";
-import searchPage from "../../PageObjects/searchPage";
-import products from "../../fixtures/products.json"
+import SearchPage from "../../page-objects/searchPage";
+import AddNewElementPage from "../../page-objects/addNewElementPage";
+import productDetailsPage from "../../page-objects/productDetailsPage";
+import products from "../../fixtures/products.json";
+import searchPage from "../../page-objects/searchPage";
+
 
 describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
 
@@ -36,57 +37,45 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
                 })
             })
         })
-        cy.log('THEN The number of products in the card is correct')
-        cy.get(`[data-test-items-count]`).each(($el, index) => {
-            cy.wrap($el).invoke('text').then((text) => {
-                let splitText = text.split('')
-                const initialValue = 0;
-                const sumWithInitial=products.reduce(
-                    (previousValue, currentValue) =>
-                        previousValue + currentValue.defaultQuantity, initialValue);
-                expect(splitText[1]).to.eq(`${sumWithInitial}`)
-            })
-        })
+        cy.get('[data-test-line-item-container]').should('have.length', products.length)
+
+        cy.log('AND The number of products in the card is correct')
+        const sumWithInitial = products.reduce((previousValue, currentValue) =>
+            previousValue + currentValue.defaultQuantity, 0);
+        cy.contains(`Cart (${sumWithInitial} items)`).should('exist')
     })
 
 
     it('Change the quantity of products in the card', () => {
 
         cy.log('GIVEN User is at the card')
-        searchPage.openCardPage()
+        SearchPage.openCardPage()
 
         cy.log('WHEN user changes the quantity of Product')
         AddNewElementPage.changeQuantityOfProduct(products[0].name, 2)
 
         cy.log('THEN Page is reloaded - loading indicator appears and disappears')
-        cy.get('circle').should('exist')
-        cy.get('circle').should('not.exist')
+        AddNewElementPage.loadingIndicator.should('exist')
+        AddNewElementPage.loadingIndicator.should('not.exist')
 
-        cy.log('THEN total amount was updated and is correct')
+        cy.get('[data-test-line-item-container]').should('have.length', products.length)
+
+        cy.log('AND total amount was updated and is correct')
         cy.get(`[data-test-price-subtotal]`).each(($el, index) => {
             cy.wrap($el).invoke('text').then(estimatedTotal => {
-                const initialValue = 0;
+
                 const sumWithInitial = products.reduce(
                     (previousValue, currentValue) =>
-                        previousValue + currentValue.price * currentValue.quantity, initialValue
-                );
+                        previousValue + currentValue.price * currentValue.quantity, 0);
                 cy.log(sumWithInitial);
                 expect(estimatedTotal).to.eq(`$${sumWithInitial.toFixed(2)}`)
             })
         })
 
-        cy.wait(1000)
-        cy.log('THEN The number of products in the card is correct')
-        cy.get(`[data-test-items-count]`).each(($el, index) => {
-            cy.wrap($el).invoke('text').then((text) => {
-                let splitText = text.split('')
-                const initialValue = 0;
-                const sumWithInitial=products.reduce(
-                    (previousValue, currentValue) =>
-                        previousValue + currentValue.quantity, initialValue);
-                expect(splitText[1]).to.eq(`${sumWithInitial}`)
-            })
-            })
-        })
-
+        cy.log('AND The number of products in the card is correct')
+        const sumWithInitial = products.reduce((previousValue, currentValue) =>
+            previousValue + currentValue.quantity, 0);
+        cy.contains(`Cart (${sumWithInitial} items)`).should('exist')
     })
+
+})

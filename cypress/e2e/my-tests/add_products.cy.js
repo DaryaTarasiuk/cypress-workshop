@@ -1,6 +1,6 @@
-import SearchPage from "../../PageObjects/searchPage";
-import ProductDetailsPage from "../../PageObjects/productDetailsPage";
-import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
+import SearchPage from "../../page-objects/searchPage";
+import ProductDetailsPage from "../../page-objects/productDetailsPage";
+import DeleteProductsPage from "../../page-objects/deleteProductsPage";
 import multipleProducts from "../../fixtures/multipleProducts.json"
 
 
@@ -48,20 +48,15 @@ describe('Test adding products to the user card', () => {
 
         })
 
-        cy.log('THEN  the title of selected product is correct')
-        cy.get(`[data-test-lineitem-title]`).each(($el, index) => {
-            cy.wrap($el).invoke('text').then(actualValue => {
-                expect(actualValue).to.eq(`${multipleProducts[index].name}`)
-
+        cy.get('[data-test-line-item-container]').should('have.length', multipleProducts.length)
+            .each(($section, index) => {
+                cy.log('THEN  the title of selected product is correct')
+                cy.wrap($section).find(`[data-test-lineitem-title]`)
+                    .should('have.text', `${multipleProducts[index].name}`)
+                cy.log('AND The products price is correct')
+                cy.wrap($section).find(`[data-test-line-item-price]`)
+                    .should('have.text',`$${multipleProducts[index].price.toFixed(2)}`)
             })
-        })
-        cy.log('THEN The products price is correct')
-        cy.get(`[data-test-line-item-price]`).each(($el, index) => {
-            cy.wrap($el).invoke('text').then(actualValue => {
-                expect(actualValue).to.eq(`$${multipleProducts[index].price.toFixed(2)}`)
-
-            })
-        })
     })
 
 
@@ -71,14 +66,8 @@ describe('Test adding products to the user card', () => {
             cy.log('AND User  delete all products from the card')
             DeleteProductsPage.deleteProductFromCard(product.name)
         })
-
         cy.log('THEN the card of user is empty')
-        cy.get('[data-test-cart-empty-text]').invoke('text')
-            .then(items => {
-                cy.wrap(items).as('items')
-                expect(items).to.eq('Your cart is empty')
-            })
-
+        cy.get('[data-test-cart-empty-text]').invoke('text').should('eq','Your cart is empty' )
     })
 
 })
