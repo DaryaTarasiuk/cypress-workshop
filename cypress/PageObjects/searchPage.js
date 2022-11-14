@@ -21,11 +21,6 @@ class SearchPage {
         cy.get('[class="text-container product-text-container"]').should('exist').click()
     }
 
-
-    SearchGoogleStoreLogoButton() {
-        cy.get('[aria-label="Google Store home. Google Store logo."]').click()
-    }
-
 }
 
 export default new SearchPage();

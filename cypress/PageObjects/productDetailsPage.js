@@ -26,7 +26,7 @@ class ProductDetailsPage {
     }
 
     get addToCardButton() {
-        return cy.get('[class="Tr75Ib"]')
+        return cy.get('[data-test-atc-cta]')
     }
 }
 

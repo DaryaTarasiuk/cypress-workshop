@@ -1,12 +1,8 @@
 import SearchPage from "../../PageObjects/searchPage";
 import ProductDetailsPage from "../../PageObjects/productDetailsPage";
-import AddNewElement from "../../PageObjects/addNewElementPage";
-import DeleteElements from "../../PageObjects/deleteProductsPage";
-import AddNewElementPage from "../../PageObjects/addNewElementPage";
 import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
 import multipleProducts from "../../fixtures/multipleProducts.json"
-import productDetailsPage from "../../PageObjects/productDetailsPage";
-import products from "../../fixtures/products.json";
+
 
 describe('Test adding products to the user card', () => {
 
@@ -50,16 +46,16 @@ describe('Test adding products to the user card', () => {
                 ProductDetailsPage.buyButton.click()
             }
 
-
         })
-        cy.log('THEN User checks the title of selected product in the card')
+
+        cy.log('THEN  the title of selected product is correct')
         cy.get(`[data-test-lineitem-title]`).each(($el, index) => {
             cy.wrap($el).invoke('text').then(actualValue => {
                 expect(actualValue).to.eq(`${multipleProducts[index].name}`)
 
             })
         })
-        cy.log('THEN User checks the price of selected product in the card')
+        cy.log('THEN The products price is correct')
         cy.get(`[data-test-line-item-price]`).each(($el, index) => {
             cy.wrap($el).invoke('text').then(actualValue => {
                 expect(actualValue).to.eq(`$${multipleProducts[index].price.toFixed(2)}`)
@@ -67,6 +63,7 @@ describe('Test adding products to the user card', () => {
             })
         })
     })
+
 
     after(() => {
 
@@ -83,5 +80,5 @@ describe('Test adding products to the user card', () => {
             })
 
     })
-})
 
+})
