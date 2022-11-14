@@ -1,9 +1,5 @@
 import SearchPage from "../../PageObjects/searchPage";
-import addNewElement from "../../PageObjects/addNewElementPage";
-import deleteProductsPage from "../../PageObjects/deleteProductsPage";
-import addNewElementPage from "../../PageObjects/addNewElementPage";
 import AddNewElementPage from "../../PageObjects/addNewElementPage";
-import DeleteProductsPage from "../../PageObjects/deleteProductsPage";
 import productDetailsPage from "../../PageObjects/productDetailsPage";
 import searchPage from "../../PageObjects/searchPage";
 import products from "../../fixtures/products.json"
@@ -47,7 +43,7 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
                 const initialValue = 0;
                 const sumWithInitial=products.reduce(
                     (previousValue, currentValue) =>
-                        previousValue + currentValue.firstQuantity, initialValue);
+                        previousValue + currentValue.defaultQuantity, initialValue);
                 expect(splitText[1]).to.eq(`${sumWithInitial}`)
             })
         })
@@ -78,7 +74,8 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
                 expect(estimatedTotal).to.eq(`$${sumWithInitial.toFixed(2)}`)
             })
         })
-        cy.wait(4000)
+
+        cy.wait(1000)
         cy.log('THEN The number of products in the card is correct')
         cy.get(`[data-test-items-count]`).each(($el, index) => {
             cy.wrap($el).invoke('text').then((text) => {
