@@ -31,13 +31,13 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
             productDetailsPage.buyButton.click()
 
             cy.log('THEN The products price is correct')
-            cy.get(`[data-test-line-item-price]`).each(($el, index) => {
+            AddNewElementPage.getThePriceOfEachProductInTheCard().each(($el, index) => {
                 cy.wrap($el).invoke('text').then(actualValue => {
                     expect(actualValue).to.eq(`$${products[index].price.toFixed(2)}`)
                 })
             })
         })
-        cy.get('[data-test-line-item-container]').should('have.length', products.length)
+        AddNewElementPage.getSectionOfProductsInTheCard().should('have.length', products.length)
 
         cy.log('AND The number of products in the card is correct')
         const sumWithInitial = products.reduce((previousValue, currentValue) =>
@@ -52,16 +52,16 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         SearchPage.openCardPage()
 
         cy.log('WHEN user changes the quantity of Product')
-        AddNewElementPage.changeQuantityOfProduct(products[0].name, 2)
+        AddNewElementPage.changeQuantityOfProduct(products[1].name, 2)
 
         cy.log('THEN Page is reloaded - loading indicator appears and disappears')
         AddNewElementPage.loadingIndicator.should('exist')
         AddNewElementPage.loadingIndicator.should('not.exist')
 
-        cy.get('[data-test-line-item-container]').should('have.length', products.length)
+        AddNewElementPage.getSectionOfProductsInTheCard().should('have.length', products.length)
 
         cy.log('AND total amount was updated and is correct')
-        cy.get(`[data-test-price-subtotal]`).each(($el, index) => {
+        AddNewElementPage.getTotalPriceOfProductInTheCard().each(($el, index) => {
             cy.wrap($el).invoke('text').then(estimatedTotal => {
 
                 const sumWithInitial = products.reduce(

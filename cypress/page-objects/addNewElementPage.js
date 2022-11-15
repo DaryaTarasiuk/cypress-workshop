@@ -9,10 +9,24 @@ class AddNewElementPage extends BasePage {
     }
 
     changeQuantityOfProduct(productName, quantity) {
-        return cy.get('[aria-label="Product Quantity"]').eq(0).select(quantity - 1)
+        return cy.get('[aria-label="Product Quantity"]').eq(1).select(quantity - 1)
     }
 
+    getSectionOfProductsInTheCard(){
+        return cy.get('[data-test-line-item-container]')
+    }
 
+    getTotalPriceOfProductInTheCard(){
+        return cy.get(`[data-test-price-subtotal]`)
+    }
+
+    getThePriceOfEachProductInTheCard(){
+        return cy.get(`[data-test-line-item-price]`)
+    }
+
+    getEmptyCard(){
+        return cy.get('[data-test-cart-empty-text]').invoke('text').should('eq','Your cart is empty' )
+    }
 }
 
 export default new AddNewElementPage();

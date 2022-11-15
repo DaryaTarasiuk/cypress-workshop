@@ -2,6 +2,7 @@ import SearchPage from "../../page-objects/searchPage";
 import ProductDetailsPage from "../../page-objects/productDetailsPage";
 import DeleteProductsPage from "../../page-objects/deleteProductsPage";
 import multipleProducts from "../../fixtures/multipleProducts.json"
+import AddNewElementPage from "../../page-objects/addNewElementPage";
 
 
 describe('Test adding products to the user card', () => {
@@ -48,7 +49,7 @@ describe('Test adding products to the user card', () => {
 
         })
 
-        cy.get('[data-test-line-item-container]').should('have.length', multipleProducts.length)
+        AddNewElementPage.getSectionOfProductsInTheCard().should('have.length', multipleProducts.length)
             .each(($section, index) => {
                 cy.log('THEN  the title of selected product is correct')
                 cy.wrap($section).find(`[data-test-lineitem-title]`)
@@ -67,7 +68,7 @@ describe('Test adding products to the user card', () => {
             DeleteProductsPage.deleteProductFromCard(product.name)
         })
         cy.log('THEN the card of user is empty')
-        cy.get('[data-test-cart-empty-text]').invoke('text').should('eq','Your cart is empty' )
+        AddNewElementPage.getEmptyCard()
     })
 
 })
