@@ -40,9 +40,9 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         AddNewElementPage.getSectionOfProductsInTheCard().should('have.length', products.length)
 
         cy.log('AND The number of products in the card is correct')
-        const sumWithInitial = products.reduce((previousValue, currentValue) =>
+        const sumOfProducts = products.reduce((previousValue, currentValue) =>
             previousValue + currentValue.defaultQuantity, 0);
-        cy.contains(`Cart (${sumWithInitial} items)`).should('exist')
+        cy.contains(`Cart (${sumOfProducts} items)`).should('exist')
     })
 
 
@@ -63,7 +63,6 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         cy.log('AND total amount was updated and is correct')
         AddNewElementPage.getTotalPriceOfProductInTheCard().each(($el, index) => {
             cy.wrap($el).invoke('text').then(estimatedTotal => {
-
                 const sumWithInitial = products.reduce(
                     (previousValue, currentValue) =>
                         previousValue + currentValue.price * currentValue.quantity, 0);
@@ -73,9 +72,9 @@ describe('USER IS ABLE TO CHANGE THE QUANTITY OF PRODUCTS IN THE CARD', () => {
         })
 
         cy.log('AND The number of products in the card is correct')
-        const sumWithInitial = products.reduce((previousValue, currentValue) =>
+        const sumOfProducts = products.reduce((previousValue, currentValue) =>
             previousValue + currentValue.quantity, 0);
-        cy.contains(`Cart (${sumWithInitial} items)`).should('exist')
+        cy.contains(`Cart (${sumOfProducts} items)`).should('exist')
     })
 
 })
